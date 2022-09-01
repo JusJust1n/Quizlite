@@ -1,6 +1,7 @@
 require('dotenv').config()
 
 const express = require('express');
+const mongoose = require('mongoose')
 const studysetsRoutes = require('./routes/studysets')
 
 //creates an express app
@@ -27,9 +28,16 @@ app.get('/', (req, res) => {
 // what this means is if you fire a request to the route (/api,,,), then fire the second parameter
 app.use('/api/studysets', studysetsRoutes)
 
-
-
-// listen for requests
-app.listen(process.env.PORT, () => {
-    console.log('listening on port', process.env.PORT);
+// Connect to the DB
+//this is asyncronous and returns a promise.
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        // listen for requests, put in mongoose.connect so that you can only listen to requests once you connect to the database
+        app.listen(process.env.PORT, () => {
+        console.log('connected to DB and listening on port', process.env.PORT);
 });
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+
