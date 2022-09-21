@@ -1,5 +1,9 @@
 const express = require('express');
-const studySet = require('../models/studysets');
+//const studySet = require('../models/studysets');
+const {
+    createWorkout,
+    
+} = require('../controllers/studysetController')
 
 const router = express.Router();
 
@@ -15,19 +19,16 @@ router.get('/:id', (req, res) => {
     res.json({mssg: 'GET single studyset'})
 })
 
+/*
 // POST a new studyset
 router.post('/', async (req, res) => {
-    const {title, cards, desc} = req.body
-
-    try {
-        const studyset = await studySet.create({title, cards, desc})
-        res.status(200).json(studyset)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
+    
 
     //res.json({mssg: 'POST new studyset'})
 })
+*/
+// POST a new studyset
+router.post('/', createStudyset)
 
 // Delete studyset
 //:id is the thing you want to delete
