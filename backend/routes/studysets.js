@@ -1,23 +1,22 @@
 const express = require('express');
 //const studySet = require('../models/studysets');
 const {
-    createWorkout,
-    
+    createStudyset,
+    getStudysets,
+    getStudyset,
+    deleteStudyset,
+    updateStudyset
 } = require('../controllers/studysetController')
 
 const router = express.Router();
 
 
 // GET all studysets
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all studysets'})
-})
+router.get('/', getStudysets)
 
 // GET single studyset
 //:id is the thing you want ot get
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET single studyset'})
-})
+router.get('/:id', getStudyset)
 
 /*
 // POST a new studyset
@@ -32,13 +31,9 @@ router.post('/', createStudyset)
 
 // Delete studyset
 //:id is the thing you want to delete
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'DELETE studyset'})
-})
+router.delete('/:id', deleteStudyset)
 
 // UPDATE a studyset
-router.patch('/:id', (req, res) => {
-    res.json({mssg: 'Update a studyset'})
-})
+router.patch('/:id', updateStudyset)
 
 module.exports = router
